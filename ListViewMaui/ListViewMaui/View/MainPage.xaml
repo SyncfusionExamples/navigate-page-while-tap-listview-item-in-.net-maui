@@ -1,0 +1,75 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ListViewMaui.MainPage"    xmlns:listView="clr-namespace:Syncfusion.Maui.ListView;assembly=Syncfusion.Maui.ListView">
+
+    <ContentPage.Content>
+        <Grid>
+            <listView:SfListView x:Name="list" ItemSize="70" ItemsSource="{Binding contactsinfo}" ItemSpacing="0,0,5,0" SelectionMode="Single">
+                <listView:SfListView.ItemTemplate>
+                    <DataTemplate x:Name="ItemTemplate">
+                        <ViewCell>
+                            <ViewCell.View>
+                                <Grid x:Name="grid" RowSpacing="1">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="*" />
+                                        <RowDefinition Height="1" />
+                                    </Grid.RowDefinitions>
+                                    <Grid RowSpacing="1" Padding="10,0,0,0">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="50" />
+                                            <ColumnDefinition Width="*" />
+                                            <ColumnDefinition Width="*" />
+                                        </Grid.ColumnDefinitions>
+                                        <Image Source="{Binding ContactImage}"
+                           VerticalOptions="Center"
+                           HorizontalOptions="Center"
+                           HeightRequest="50"/>
+                                        <Grid Grid.Column="1"
+                          RowSpacing="1"
+                          Padding="10,0,0,0"
+                          VerticalOptions="Center">
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="*" />
+                                                <RowDefinition Height="*" />
+                                            </Grid.RowDefinitions>
+                                            <Label LineBreakMode="NoWrap"
+                             TextColor="#474747"
+                             Text="{Binding ContactName}"
+                                                   FontSize="12">
+
+                                            </Label>
+                                            <Label Grid.Row="1"
+                             Grid.Column="0"
+                             TextColor="#474747"
+                             LineBreakMode="NoWrap"
+                             Text="{Binding ContactNumber}"
+                                                   FontSize="12">
+
+                                            </Label>
+                                        </Grid>
+                                        <Grid Grid.Row="0"
+                          x:Name="temp"
+                          Grid.Column="2"
+                          RowSpacing="0"
+                          HorizontalOptions="End"
+                          Padding="0,10,10,0">
+                                            <Image Source="navigate.png" HeightRequest="50">
+                                                <Image.GestureRecognizers>
+                                                    <TapGestureRecognizer
+                              Command="{Binding Path=BindingContext.TapCommand, Source = {x:Reference list}}" CommandParameter="{Binding}" />
+                                                </Image.GestureRecognizers>
+                                            </Image>
+                                        </Grid>
+                                    </Grid>
+                                    <StackLayout Grid.Row="1" BackgroundColor="#E4E4E4" HeightRequest="1"/>
+                                </Grid>
+                            </ViewCell.View>
+                        </ViewCell>
+                    </DataTemplate>
+                </listView:SfListView.ItemTemplate>
+            </listView:SfListView>
+        </Grid>
+    </ContentPage.Content>
+
+</ContentPage>
